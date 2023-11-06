@@ -72,7 +72,7 @@ if(CUDA_CHECK)
    include_directories(include ${OpenCV_INCLUDE_DIRS} cuda ${TOOLS_include_dir})
 
    add_library(roam_lib ${roam_SRC})
-   target_link_libraries(roam_lib roam_gpu ${OpenCV_LIBS} cv_tools_lib om_utils bk_maxflow)
+   target_link_libraries(roam_lib roam_gpu Ceres::ceres ${OpenCV_LIBS} cv_tools_lib om_utils bk_maxflow )
    set_target_properties(roam_lib PROPERTIES DEBUG_POSTFIX _d)
 
 else()
@@ -81,7 +81,7 @@ else()
     include_directories(include ${OpenCV_INCLUDE_DIRS} ${TOOLS_include_dir})
 
     add_library(roam_lib ${roam_SRC})
-    target_link_libraries(roam_lib ${OpenCV_LIBS} cv_tools_lib om_utils bk_maxflow)
+    target_link_libraries(roam_lib Ceres::ceres ${OpenCV_LIBS} cv_tools_lib om_utils bk_maxflow )
     set_target_properties(roam_lib PROPERTIES DEBUG_POSTFIX _d)
 
 endif()

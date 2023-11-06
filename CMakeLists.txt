@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.8.11)
+cmake_minimum_required (VERSION 3.5)
 
 #--------------------------------------------------------------------------
 # must go before the project command
@@ -7,6 +7,10 @@ set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE)
 if(DEFINED CMAKE_BUILD_TYPE)
   set_property( CACHE CMAKE_BUILD_TYPE PROPERTY STRINGS ${CMAKE_CONFIGURATION_TYPES} )
 endif()
+# for ceres installed by vcpkg, the following line is needed
+set(CMAKE_TOOLCHAIN_FILE "C:/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "")
+# opencv defined windows.h, which will cause conflict with glog
+add_definitions(-DGLOG_NO_ABBREVIATED_SEVERITIES)
 
 #--------------------------------------------------------------------------
 # project name
@@ -70,9 +74,16 @@ IF(WITH_OPENMP)
 ENDIF()
 
 # opencv
+set(OpenCV_DIR "${CMAKE_CURRENT_SOURCE_DIR}/opencv/build")
 find_package(OpenCV REQUIRED)
 CANONIFY_BOOL(OpenCV_FOUND)
 message(STATUS "OpenCV found: " ${OpenCV_FOUND})
+
+
+
+# ceres solver
+find_package(Ceres REQUIRED)
+
 
 # cuda
 if(WITH_CUDA)
