@@ -42,4 +42,5 @@ Makefile*
 
 #folders Qt
 
-build-*/
+build/
+opencv/
