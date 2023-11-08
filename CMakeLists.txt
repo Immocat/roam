@@ -15,7 +15,7 @@ add_definitions(-DGLOG_NO_ABBREVIATED_SEVERITIES)
 #--------------------------------------------------------------------------
 # project name
 #--------------------------------------------------------------------------
-project(ROAM)
+project(PinRoto)
 
 #--------------------------------------------------------------------------
 # options
@@ -124,7 +124,8 @@ endif()
 #--------------------------------------------------------------------------
 # projects
 #--------------------------------------------------------------------------
-add_subdirectory(roam)
-add_subdirectory(roam_apps)
-add_subdirectory(tools)
-
+# add_subdirectory(roam)
+# add_subdirectory(roam_apps)
+# add_subdirectory(tools)
+add_subdirectory(pinroto)
+add_subdirectory(pinroto_apps)
